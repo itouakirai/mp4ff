@@ -137,7 +137,7 @@ func (f *Fragment) GetFullSamples(trex *TrexBox) ([]FullSample, error) {
 	for i, trun := range traf.Truns {
 		totalDur := trun.AddSampleDefaultValues(tfhd, trex)
 		//Try to fix the missing sample size
-		if !trun.HasSampleSize() && len(traf.Truns)-i != 0 {
+		if !trun.HasSampleSize() && len(traf.Truns)-i != 1 {
 			if trun.HasDataOffset() && traf.Truns[i+1].HasDataOffset() {
 				size := (traf.Truns[i+1].DataOffset - trun.DataOffset) / int32(trun.SampleCount())
 				for j := range trun.Samples {
